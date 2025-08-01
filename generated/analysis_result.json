@@ -1,7 +1,7 @@
 ﻿{
   "binaries": [
     {
-      "binary": "D:\\workspace\\csharpfuzz\\WFuzzGen\\TestLibrary\\bin\\Debug\\net9.0\\TestLibrary.dll",
+      "binary": "D:\\workspace\\csharpfuzz\\TestLibrary\\bin\\Debug\\net9.0\\TestLibrary.dll",
       "files": [
         {
           "file": "",
@@ -9,124 +9,12 @@
           "lines": 0,
           "functions": [
             {
-              "function_brief": "SendMessage",
-              "function": "EventPublisher.SendMessage(string message)",
-              "symbol": "TestLibrary_EventPublisher_SendMessage_string",
-              "arguments": [
-                {
-                  "typeid": "s",
-                  "display": "string",
-                  "default_generator": "string"
-                }
-              ],
-              "lineBegin": 0,
-              "lineEnd": 0,
-              "lineCount": 0,
-              "lineCoverage": 0
-            },
-            {
-              "function_brief": "AddResource",
-              "function": "ResourceManager.AddResource(string resource)",
-              "symbol": "TestLibrary_ResourceManager_AddResource_string",
-              "arguments": [
-                {
-                  "typeid": "s",
-                  "display": "string",
-                  "default_generator": "string"
-                }
-              ],
-              "lineBegin": 0,
-              "lineEnd": 0,
-              "lineCount": 0,
-              "lineCoverage": 0
-            },
-            {
-              "function_brief": "Process",
-              "function": "StringProcessor.Process(string input)",
-              "symbol": "TestLibrary_StringProcessor_Process_string",
-              "arguments": [
-                {
-                  "typeid": "s",
-                  "display": "string",
-                  "default_generator": "string"
-                }
-              ],
-              "lineBegin": 0,
-              "lineEnd": 0,
-              "lineCount": 0,
-              "lineCoverage": 0
-            },
-            {
-              "function_brief": "Reverse",
-              "function": "StringProcessor.Reverse(string input)",
-              "symbol": "TestLibrary_StringProcessor_Reverse_string",
-              "arguments": [
-                {
-                  "typeid": "s",
-                  "display": "string",
-                  "default_generator": "string"
-                }
-              ],
-              "lineBegin": 0,
-              "lineEnd": 0,
-              "lineCount": 0,
-              "lineCoverage": 0
-            },
-            {
-              "function_brief": "Contains",
-              "function": "Container\u00601.Contains(T item)",
-              "symbol": "TestLibrary_Container_T_Contains_T",
-              "arguments": [
-                {
-                  "typeid": "t3089",
-                  "display": "T",
-                  "default_generator": "t_generator"
-                }
-              ],
-              "lineBegin": 0,
-              "lineEnd": 0,
-              "lineCount": 0,
-              "lineCoverage": 0
-            },
-            {
-              "function_brief": "Get",
-              "function": "Container\u00601.Get(int index)",
-              "symbol": "TestLibrary_Container_T_Get_int",
-              "arguments": [
-                {
-                  "typeid": "i",
-                  "display": "int",
-                  "default_generator": "int"
-                }
-              ],
-              "lineBegin": 0,
-              "lineEnd": 0,
-              "lineCount": 0,
-              "lineCoverage": 0
-            },
-            {
-              "function_brief": "Add",
-              "function": "Container\u00601.Add(T item)",
-              "symbol": "TestLibrary_Container_T_Add_T",
-              "arguments": [
-                {
-                  "typeid": "t3089",
-                  "display": "T",
-                  "default_generator": "t_generator"
-                }
-              ],
-              "lineBegin": 0,
-              "lineEnd": 0,
-              "lineCount": 0,
-              "lineCoverage": 0
-            },
-            {
               "function_brief": "Equals",
               "function": "Vector2D.Equals(object obj)",
               "symbol": "TestLibrary_Vector2D_Equals_object",
               "arguments": [
                 {
-                  "typeid": "t9308",
+                  "typeid": "t8265",
                   "display": "object",
                   "default_generator": "object_generator"
                 }
@@ -219,6 +107,118 @@
               "lineEnd": 0,
               "lineCount": 0,
               "lineCoverage": 0
+            },
+            {
+              "function_brief": "Process",
+              "function": "StringProcessor.Process(string input)",
+              "symbol": "TestLibrary_StringProcessor_Process_string",
+              "arguments": [
+                {
+                  "typeid": "s",
+                  "display": "string",
+                  "default_generator": "string"
+                }
+              ],
+              "lineBegin": 0,
+              "lineEnd": 0,
+              "lineCount": 0,
+              "lineCoverage": 0
+            },
+            {
+              "function_brief": "Reverse",
+              "function": "StringProcessor.Reverse(string input)",
+              "symbol": "TestLibrary_StringProcessor_Reverse_string",
+              "arguments": [
+                {
+                  "typeid": "s",
+                  "display": "string",
+                  "default_generator": "string"
+                }
+              ],
+              "lineBegin": 0,
+              "lineEnd": 0,
+              "lineCount": 0,
+              "lineCoverage": 0
+            },
+            {
+              "function_brief": "AddResource",
+              "function": "ResourceManager.AddResource(string resource)",
+              "symbol": "TestLibrary_ResourceManager_AddResource_string",
+              "arguments": [
+                {
+                  "typeid": "s",
+                  "display": "string",
+                  "default_generator": "string"
+                }
+              ],
+              "lineBegin": 0,
+              "lineEnd": 0,
+              "lineCount": 0,
+              "lineCoverage": 0
+            },
+            {
+              "function_brief": "Contains",
+              "function": "Container\u00601.Contains(T item)",
+              "symbol": "TestLibrary_Container_T_Contains_T",
+              "arguments": [
+                {
+                  "typeid": "t504",
+                  "display": "T",
+                  "default_generator": "t_generator"
+                }
+              ],
+              "lineBegin": 0,
+              "lineEnd": 0,
+              "lineCount": 0,
+              "lineCoverage": 0
+            },
+            {
+              "function_brief": "Get",
+              "function": "Container\u00601.Get(int index)",
+              "symbol": "TestLibrary_Container_T_Get_int",
+              "arguments": [
+                {
+                  "typeid": "i",
+                  "display": "int",
+                  "default_generator": "int"
+                }
+              ],
+              "lineBegin": 0,
+              "lineEnd": 0,
+              "lineCount": 0,
+              "lineCoverage": 0
+            },
+            {
+              "function_brief": "Add",
+              "function": "Container\u00601.Add(T item)",
+              "symbol": "TestLibrary_Container_T_Add_T",
+              "arguments": [
+                {
+                  "typeid": "t504",
+                  "display": "T",
+                  "default_generator": "t_generator"
+                }
+              ],
+              "lineBegin": 0,
+              "lineEnd": 0,
+              "lineCount": 0,
+              "lineCoverage": 0
+            },
+            {
+              "function_brief": "SendMessage",
+              "function": "EventPublisher.SendMessage(string message)",
+              "symbol": "TestLibrary_EventPublisher_SendMessage_string",
+              "arguments": [
+                {
+                  "typeid": "s",
+                  "display": "string",
+                  "default_generator": "string"
+                }
+              ],
+              "lineBegin": 0,
+              "lineEnd": 0,
+              "lineCount": 0,
+              "lineCoverage": 0
             }
           ]
         },
@@ -243,8 +243,8 @@
                   "default_generator": "string"
                 }
               ],
-              "lineBegin": 70,
-              "lineEnd": 75,
+              "lineBegin": 81,
+              "lineEnd": 86,
               "lineCount": 6,
               "lineCoverage": 0.25
             },
@@ -259,8 +259,8 @@
                   "default_generator": "int"
                 }
               ],
-              "lineBegin": 70,
-              "lineEnd": 75,
+              "lineBegin": 81,
+              "lineEnd": 86,
               "lineCount": 6,
               "lineCoverage": 0.25
             }
@@ -282,13 +282,13 @@
                   "default_generator": "int"
                 },
                 {
-                  "typeid": "t3089",
+                  "typeid": "t504",
                   "display": "T",
                   "default_generator": "t_generator"
                 }
               ],
-              "lineBegin": 30,
-              "lineEnd": 35,
+              "lineBegin": 106,
+              "lineEnd": 111,
               "lineCount": 6,
               "lineCoverage": 0.25
             },
@@ -303,8 +303,8 @@
                   "default_generator": "int"
                 }
               ],
-              "lineBegin": 30,
-              "lineEnd": 35,
+              "lineBegin": 106,
+              "lineEnd": 111,
               "lineCount": 6,
               "lineCoverage": 0.25
             }
@@ -313,48 +313,36 @@
       ],
       "type_generators": [
         {
-          "typeid": "t6770",
-          "display_name": "TestLibrary_EventPublisher",
+          "typeid": "t5690",
+          "display_name": "TestLibrary_Vector2D",
           "generators": [
             {
               "display_name": "\u003Cdefault\u003E",
-              "mangled_name": "testlibrary_eventpublisher_generator",
+              "mangled_name": "testlibrary_vector2d_generator",
               "is_default": true,
               "arguments": []
             }
           ]
         },
         {
-          "typeid": "s",
-          "display_name": "string",
+          "typeid": "t8265",
+          "display_name": "object",
           "generators": [
             {
-              "display_name": "\u003Cbasic\u003E",
-              "mangled_name": "string",
+              "display_name": "\u003Cdefault\u003E",
+              "mangled_name": "object_generator",
               "is_default": true,
               "arguments": []
             }
           ]
         },
         {
-          "typeid": "t3573",
-          "display_name": "TestLibrary_ResourceManager",
+          "typeid": "t6234",
+          "display_name": "TestLibrary_Calculator",
           "generators": [
             {
               "display_name": "\u003Cdefault\u003E",
-              "mangled_name": "testlibrary_resourcemanager_generator",
-              "is_default": true,
-              "arguments": []
-            }
-          ]
-        },
-        {
-          "typeid": "t7153",
-          "display_name": "TestLibrary_StringProcessor",
-          "generators": [
-            {
-              "display_name": "\u003Cdefault\u003E",
-              "mangled_name": "testlibrary_stringprocessor_generator",
+              "mangled_name": "testlibrary_calculator_generator",
               "is_default": true,
               "arguments": []
             }
@@ -373,7 +361,55 @@
           ]
         },
         {
-          "typeid": "t6051",
+          "typeid": "d",
+          "display_name": "double",
+          "generators": [
+            {
+              "display_name": "\u003Cbasic\u003E",
+              "mangled_name": "double",
+              "is_default": true,
+              "arguments": []
+            }
+          ]
+        },
+        {
+          "typeid": "t9373",
+          "display_name": "TestLibrary_StringProcessor",
+          "generators": [
+            {
+              "display_name": "\u003Cdefault\u003E",
+              "mangled_name": "testlibrary_stringprocessor_generator",
+              "is_default": true,
+              "arguments": []
+            }
+          ]
+        },
+        {
+          "typeid": "s",
+          "display_name": "string",
+          "generators": [
+            {
+              "display_name": "\u003Cbasic\u003E",
+              "mangled_name": "string",
+              "is_default": true,
+              "arguments": []
+            }
+          ]
+        },
+        {
+          "typeid": "t3047",
+          "display_name": "TestLibrary_ResourceManager",
+          "generators": [
+            {
+              "display_name": "\u003Cdefault\u003E",
+              "mangled_name": "testlibrary_resourcemanager_generator",
+              "is_default": true,
+              "arguments": []
+            }
+          ]
+        },
+        {
+          "typeid": "t7736",
           "display_name": "TestLibrary_Container_T",
           "generators": [
             {
@@ -385,7 +421,7 @@
           ]
         },
         {
-          "typeid": "t3089",
+          "typeid": "t504",
           "display_name": "T",
           "generators": [
             {
@@ -397,48 +433,12 @@
           ]
         },
         {
-          "typeid": "t2039",
-          "display_name": "TestLibrary_Vector2D",
+          "typeid": "t1588",
+          "display_name": "TestLibrary_EventPublisher",
           "generators": [
             {
               "display_name": "\u003Cdefault\u003E",
-              "mangled_name": "testlibrary_vector2d_generator",
-              "is_default": true,
-              "arguments": []
-            }
-          ]
-        },
-        {
-          "typeid": "t9308",
-          "display_name": "object",
-          "generators": [
-            {
-              "display_name": "\u003Cdefault\u003E",
-              "mangled_name": "object_generator",
-              "is_default": true,
-              "arguments": []
-            }
-          ]
-        },
-        {
-          "typeid": "t3453",
-          "display_name": "TestLibrary_Calculator",
-          "generators": [
-            {
-              "display_name": "\u003Cdefault\u003E",
-              "mangled_name": "testlibrary_calculator_generator",
-              "is_default": true,
-              "arguments": []
-            }
-          ]
-        },
-        {
-          "typeid": "d",
-          "display_name": "double",
-          "generators": [
-            {
-              "display_name": "\u003Cbasic\u003E",
-              "mangled_name": "double",
+              "mangled_name": "testlibrary_eventpublisher_generator",
               "is_default": true,
               "arguments": []
             }
