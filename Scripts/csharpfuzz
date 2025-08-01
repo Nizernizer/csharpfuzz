@@ -1,0 +1,54 @@
+#!/bin/bash
+
+SCRIPT_DIR=$( cd -- "$( dirname -- "${BASH_SOURCE[0]}" )" &> /dev/null && pwd )
+
+if [ -z "$1" ] || [ -z "$2" ]; then
+    echo "Usage: csharpfuzz ASSEMBLY TARGET [AFL_OPTIONS]"
+    echo ""
+    echo "  ASSEMBLY:      Path to .NET assembly (.dll or .exe)"
+    echo "  TARGET:        Full name of target method, like 'Namespace.ClassName.MethodName'"
+    echo "  AFL_OPTIONS:   Other options are passed to afl-fuzz"
+    echo ""
+    echo "AFL Options:"
+    echo "  Run '$SCRIPT_DIR/afl-fuzz -h' to see full list"
+    echo ""
+    echo "Target Example:"
+    echo "------------------------------------------------------"
+    echo "namespace TestLibrary"
+    echo "{"
+    echo "    public class Calculator"
+    echo "    {"
+    echo "        public static int Add(int a, int b)"
+    echo "        {"
+    echo "            return a + b;"
+    echo "        }"
+    echo "    }"
+    echo "}"
+    echo ""
+    echo "Usage: csharpfuzz TestLibrary.dll TestLibrary.Calculator.Add"
+    echo "------------------------------------------------------"
+    exit 1
+fi
+
+if [ -z "$WFUZZ_TOOL_DOTNET_PATH" ]; then
+    echo "Required package 'dotnet' not found."
+    exit 1
+fi
+
+assembly="$1"
+shift
+target="$1"
+shift
+
+export AFL_SKIP_BIN_CHECK=1
+export DOTNET_ROOT=$WFUZZ_TOOL_DOTNET_PATH
+
+set -ex
+
+exec $SCRIPT_DIR/afl-fuzz $@ \
+    $WFUZZ_TOOL_DOTNET_PATH/dotnet \
+    $DOTNET_OPTS \
+    $SCRIPT_DIR/../WFuzzAgent.dll \
+    --assembly $assembly \
+    --target $target \
+    WFuzzDriver.DriverFuzzMain

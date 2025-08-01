@@ -1,0 +1,36 @@
+#!/bin/bash
+
+SCRIPT_DIR=$( cd -- "$( dirname -- "${BASH_SOURCE[0]}" )" &> /dev/null && pwd )
+
+if [ -z "$1" ] || [ -z "$2" ]; then
+    echo "Usage: csharpfuzz-run ASSEMBLY TARGET [FILES...]"
+    echo ""
+    echo "  Run target directly with input files"
+    echo ""
+    echo "  ASSEMBLY:      Path to .NET assembly (.dll or .exe)"
+    echo "  TARGET:        Full name of target method, like 'Namespace.ClassName.MethodName'"
+    echo "  FILES:         Input files to run, If empty, read input from stdin."
+    echo ""
+    exit 1
+fi
+
+if [ -z "$WFUZZ_TOOL_DOTNET_PATH" ]; then
+    echo "Required package 'dotnet' not found."
+    exit 1
+fi
+
+assembly="$1"
+shift
+target="$1"
+shift
+
+export DOTNET_ROOT=$WFUZZ_TOOL_DOTNET_PATH
+
+set -ex
+
+exec $WFUZZ_TOOL_DOTNET_PATH/dotnet \
+    $DOTNET_OPTS \
+    $SCRIPT_DIR/../WFuzzAgent.dll \
+    --assembly $assembly \
+    --target $target \
+    WFuzzDriver.DriverFuzzMain $@

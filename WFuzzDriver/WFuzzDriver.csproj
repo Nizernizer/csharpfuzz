@@ -1,0 +1,15 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <TargetFramework>net9.0</TargetFramework>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\WFuzz\WFuzz.csproj" />
+    <!-- 注意：WFuzzGen.Generated.dll 是动态生成的，不会直接引用 -->
+  </ItemGroup>
+
+</Project>

@@ -1,0 +1,17 @@
+D:\workspace\csharpfuzz\generated\bin\Debug\net9.0\WFuzzGen.Generated.deps.json
+D:\workspace\csharpfuzz\generated\bin\Debug\net9.0\WFuzzGen.Generated.dll
+D:\workspace\csharpfuzz\generated\bin\Debug\net9.0\WFuzzGen.Generated.pdb
+D:\workspace\csharpfuzz\generated\bin\Debug\net9.0\TestLibrary.dll
+D:\workspace\csharpfuzz\generated\bin\Debug\net9.0\WFuzz.dll
+D:\workspace\csharpfuzz\generated\bin\Debug\net9.0\WFuzz.pdb
+D:\workspace\csharpfuzz\generated\bin\Debug\net9.0\TestLibrary.pdb
+D:\workspace\csharpfuzz\generated\obj\Debug\net9.0\WFuzzGen.Generated.csproj.AssemblyReference.cache
+D:\workspace\csharpfuzz\generated\obj\Debug\net9.0\WFuzzGen.Generated.GeneratedMSBuildEditorConfig.editorconfig
+D:\workspace\csharpfuzz\generated\obj\Debug\net9.0\WFuzzGen.Generated.AssemblyInfoInputs.cache
+D:\workspace\csharpfuzz\generated\obj\Debug\net9.0\WFuzzGen.Generated.AssemblyInfo.cs
+D:\workspace\csharpfuzz\generated\obj\Debug\net9.0\WFuzzGen.Generated.csproj.CoreCompileInputs.cache
+D:\workspace\csharpfuzz\generated\obj\Debug\net9.0\WFuzzGen.7BE42A22.Up2Date
+D:\workspace\csharpfuzz\generated\obj\Debug\net9.0\WFuzzGen.Generated.dll
+D:\workspace\csharpfuzz\generated\obj\Debug\net9.0\refint\WFuzzGen.Generated.dll
+D:\workspace\csharpfuzz\generated\obj\Debug\net9.0\WFuzzGen.Generated.pdb
+D:\workspace\csharpfuzz\generated\obj\Debug\net9.0\ref\WFuzzGen.Generated.dll

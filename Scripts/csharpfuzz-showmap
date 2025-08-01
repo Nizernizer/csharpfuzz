@@ -1,0 +1,37 @@
+#!/bin/bash
+
+SCRIPT_DIR=$( cd -- "$( dirname -- "${BASH_SOURCE[0]}" )" &> /dev/null && pwd )
+
+if [ -z "$1" ] || [ -z "$2" ]; then
+    echo "Usage: csharpfuzz-showmap ASSEMBLY TARGET [AFL_SHOWMAP_OPTIONS]"
+    echo ""
+    echo "  ASSEMBLY:              Path to .NET assembly (.dll or .exe)"
+    echo "  TARGET:                Full name of target method"
+    echo "  AFL_SHOWMAP_OPTIONS:   Other options are passed to afl-showmap"
+    echo ""
+    echo "AFL Show Map Options:"
+    echo "  Run '$SCRIPT_DIR/afl-showmap -h' to see full list"
+    echo ""
+    exit 1
+fi
+
+if [ -z "$WFUZZ_TOOL_DOTNET_PATH" ]; then
+    echo "Required package 'dotnet' not found."
+    exit 1
+fi
+
+assembly="$1"
+shift
+target="$1"
+shift
+
+export DOTNET_ROOT=$WFUZZ_TOOL_DOTNET_PATH
+
+set -ex
+
+exec $SCRIPT_DIR/afl-showmap $@ -- \
+    $WFUZZ_TOOL_DOTNET_PATH/dotnet $DOTNET_OPTS \
+    $SCRIPT_DIR/../WFuzzAgent.dll \
+    --assembly $assembly \
+    --target $target \
+    WFuzzDriver.DriverFuzzMain

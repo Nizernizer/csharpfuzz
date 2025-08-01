@@ -1,0 +1,19 @@
+#!/bin/bash
+
+if [ -z "$WFUZZ_TOOL_DOTNET_PATH" ]; then
+    echo "Required package 'dotnet' not found."
+    exit 1
+fi
+
+SCRIPT_DIR=$( cd -- "$( dirname -- "${BASH_SOURCE[0]}" )" &> /dev/null && pwd )
+
+if [ -z "$WFUZZ_CONFIG" ]; then
+    WFUZZ_CONFIG="wfuzz.json"
+fi
+
+$WFUZZ_TOOL_DOTNET_PATH/dotnet \
+    $SCRIPT_DIR/../WFuzzAgent.dll \
+    --config $WFUZZ_CONFIG \
+    --entrypoint $WFUZZ_TEST_ENTRYPOINT \
+    --assembly $SCRIPT_DIR/../wfuzz.dll \
+    WFuzzDriver.DriverFuzzMain "$@"

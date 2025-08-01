@@ -1,0 +1,77 @@
+#!/bin/bash
+
+SCRIPT_DIR=$( cd -- "$( dirname -- "${BASH_SOURCE[0]}" )" &> /dev/null && pwd )
+
+if [ -z "$WFUZZ_TOOL_DOTNET_PATH" ]; then
+    echo "Required package 'dotnet' not found."
+    exit 1
+fi
+
+if [ -z "$WFUZZ_TOOL_WFUZZ_FUZZ_CODE_CSHARP_PATH" ]; then
+    echo "Required package 'wfuzz-fuzz-code-csharp' not found."
+    exit 1
+fi
+
+export DOTNET_ROOT=$WFUZZ_TOOL_DOTNET_PATH
+
+if [ -z "$WFUZZ_CONFIG" ]; then
+    WFUZZ_CONFIG="wfuzz.json"
+fi
+
+if [ ! -f "$WFUZZ_CONFIG" ]; then
+    echo "Required config file WFUZZ_CONFIG: '$WFUZZ_CONFIG' not found."
+    exit 1
+fi
+
+if [ -z "$WFUZZ_TEST_ENTRYPOINT" ]; then
+    echo "Required environment variable WFUZZ_TEST_ENTRYPOINT not set."
+    exit 1
+fi
+
+if [ -z "$FUZZER_INPUT_DIR" ]; then
+    echo "Required environment variable FUZZER_INPUT_DIR not set."
+    exit 1
+fi
+
+if [ -z "$FUZZER_DIR" ]; then
+    echo "Required environment variable FUZZER_DIR not set."
+    exit 1
+fi
+
+set -ex
+
+mkdir -p $FUZZER_INPUT_DIR
+echo -n "" > $FUZZER_INPUT_DIR/_
+echo -n "a" > $FUZZER_INPUT_DIR/a
+
+export AFL_SKIP_BIN_CHECK=1
+export AFL_I_DONT_CARE_ABOUT_MISSING_CRASHES=1
+export AFL_SKIP_CPUFREQ=1
+export AFL_NO_UI=1
+export AFL_IGNORE_SEED_PROBLEMS=1
+export AFL_CRASH_EXITCODE=-99
+
+if [ "$WFUZZ_LOG_LEVEL" == "DEBUG" ]; then
+    export AFL_DEBUG=1
+    export AFL_DEBUG_CHILD=1
+fi
+
+export FUZZER_AFL_DIR=$FUZZER_DIR/csharpfuzz
+export FUZZER_AFL_NAME=default
+
+exec $WFUZZ_TOOL_WFUZZ_FUZZ_CODE_CSHARP_PATH/bin/fuzzer-adapter-afl \
+    --crash-analyzer $SCRIPT_DIR/crash-analyzer \
+    -- \
+    $SCRIPT_DIR/afl-fuzz \
+    -i $FUZZER_INPUT_DIR \
+    -o $FUZZER_DIR/csharpfuzz \
+    -m none \
+    -M default \
+    -- \
+    $WFUZZ_TOOL_DOTNET_PATH/dotnet \
+    $DOTNET_OPTS \
+    $SCRIPT_DIR/../WFuzzAgent.dll \
+    --config $WFUZZ_CONFIG \
+    --entrypoint $WFUZZ_TEST_ENTRYPOINT \
+    --assembly $SCRIPT_DIR/../wfuzz.dll \
+    WFuzzDriver.DriverFuzzMain

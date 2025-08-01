@@ -1,0 +1,14 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net9.0</TargetFramework>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+  </PropertyGroup>
+
+<ItemGroup>
+  <PackageReference Include="SharpFuzz" Version="2.2.0" />
+  <ProjectReference Include="..\WFuzz\WFuzz.csproj" />
+</ItemGroup>
+
+</Project>

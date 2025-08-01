@@ -1,0 +1,48 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <TargetFramework>net9.0</TargetFramework> <!-- 确保与您的其他项目一致 -->
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\WFuzz\WFuzz.csproj" />
+    <!-- 确保 TestLibrary 是项目引用，或者正确配置文件引用 -->
+    <!-- <ProjectReference Include="..\TestLibrary\TestLibrary.csproj" /> -->
+    <!-- 如果必须文件引用，请确保 CopyToOutputDirectory -->
+    <Reference Include="TestLibrary">
+      <HintPath>..\TestLibrary\bin\Debug\net9.0\TestLibrary.dll</HintPath> <!-- 或 Release -->
+      <Private>true</Private> <!-- 确保复制到输出目录 -->
+    </Reference>
+    <Reference Include="WFuzzGen.Generated">
+      <HintPath>..\generated\bin\Debug\net9.0\WFuzzGen.Generated.dll</HintPath> <!-- 或 Release -->
+      <Private>true</Private> <!-- 确保复制到输出目录 -->
+    </Reference>
+  </ItemGroup>
+
+  <!-- 添加对 WFuzz, TestLibrary 和 WFuzzGen.Generated 的引用 -->
+  <ItemGroup>
+    <!-- 引用 WFuzz 核心库项目 -->
+    <ProjectReference Include="..\WFuzz\WFuzz.csproj" />
+    
+    <!-- 引用 TestLibrary 项目 -->
+    <ProjectReference Include="..\TestLibrary\TestLibrary.csproj" />
+    
+    <!-- 引用 WFuzzGen 生成的程序集 -->
+    <!-- 注意：这里引用的是生成的项目，需要确保路径正确且项目已构建 -->
+    <!-- 如果直接引用 DLL 文件，使用 <Reference Include="..."> -->
+     <Reference Include="WFuzzGen.Generated">
+      <HintPath>..\generated\bin\Debug\net9.0\WFuzzGen.Generated.dll</HintPath>
+    </Reference>
+    <!-- 或者，如果 WFuzzGen.Generated 是一个项目，可以使用 ProjectReference -->
+    <!-- <ProjectReference Include="..\generated\WFuzzGen.Generated.csproj" /> -->
+    
+    <!-- 确保插桩后的 TestLibrary.dll 也在输出目录中 -->
+    <Reference Include="TestLibrary">
+      <HintPath>..\TestLibrary\bin\Debug\net9.0\TestLibrary.dll</HintPath> <!-- 指向插桩后的 DLL -->
+    </Reference>
+  </ItemGroup>
+
+</Project>

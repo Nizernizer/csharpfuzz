@@ -1,0 +1,111 @@
+#!/bin/bash
+
+if [ "$1" = "--help" ] || [ "$1" = "-h" ]; then
+    echo "Usage: wfuzz build analyze [OPTIONS]"
+    echo "    Analyze .NET assemblies and generate fuzz test code"
+    echo ""
+    echo "Options:"
+    echo "    -o, --output DIR           Output directory for generated code"
+    echo "    -a, --assembly PATH        Assembly to analyze"
+    echo "    -n, --namespace PREFIX     Namespace prefix filter"
+    echo "    -e, --exclude PATTERN      Exclude pattern"
+    echo "    -r, --references DLL,...   Additional reference assemblies"
+    echo "    --parallel                 Enable parallel analysis"
+    echo "    --output-json PATH         Output analysis result as JSON"
+    exit 0
+fi
+
+SCRIPT_DIR=$( cd -- "$( dirname -- "${BASH_SOURCE[0]}" )" &> /dev/null && pwd )
+
+OUTPUT_DIR="./fuzz-tests"
+ASSEMBLIES=""
+NAMESPACE=""
+EXCLUDE=""
+REFERENCES=""
+PARALLEL="false"
+OUTPUT_JSON=""
+
+while [ ! -z "$1" ]; do
+    case "$1" in
+        -o|--output)
+            shift
+            OUTPUT_DIR="$1"
+            shift
+            ;;
+        -a|--assembly)
+            shift
+            ASSEMBLIES="$ASSEMBLIES $1"
+            shift
+            ;;
+        -n|--namespace)
+            shift
+            NAMESPACE="$1"
+            shift
+            ;;
+        -e|--exclude)
+            shift
+            EXCLUDE="$1"
+            shift
+            ;;
+        -r|--references)
+            shift
+            REFERENCES="$1"
+            shift
+            ;;
+        --parallel)
+            PARALLEL="true"
+            shift
+            ;;
+        --output-json)
+            shift
+            OUTPUT_JSON="$1"
+            shift
+            ;;
+        *)
+            echo "Unknown parameter: $1"
+            exit 1
+            ;;
+    esac
+done
+
+if [ -z "$ASSEMBLIES" ]; then
+    # 尝试从 wfuzz.json 读取
+    if [ -f "wfuzz.json" ]; then
+        ASSEMBLIES=$($WFUZZ_TOOL_WFUZZ_UTILS_PATH/bin/wfuzz-utils parse-json wfuzz.json build.root -r)
+    fi
+fi
+
+if [ -z "$ASSEMBLIES" ]; then
+    echo "Error: No assembly specified"
+    exit 1
+fi
+
+# 构建 WFuzzGen 参数
+ARGS=""
+
+for assembly in $ASSEMBLIES; do
+    ARGS="$ARGS $assembly"
+done
+
+ARGS="$ARGS $OUTPUT_DIR"
+
+if [ ! -z "$NAMESPACE" ]; then
+    ARGS="$ARGS --namespace $NAMESPACE"
+fi
+
+if [ ! -z "$EXCLUDE" ]; then
+    ARGS="$ARGS --exclude $EXCLUDE"
+fi
+
+if [ ! -z "$REFERENCES" ]; then
+    ARGS="$ARGS --references $REFERENCES"
+fi
+
+if [ "$PARALLEL" = "true" ]; then
+    ARGS="$ARGS --parallel true"
+fi
+
+set -ex
+
+# 运行 WFuzzGen
+exec $WFUZZ_TOOL_DOTNET_PATH/dotnet $SCRIPT_DIR/../WFuzzGen.dll $ARGS

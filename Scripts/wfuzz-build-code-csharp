@@ -1,0 +1,45 @@
+#!/bin/bash
+
+if [ -z "$WFUZZ_TOOL_DOTNET_PATH" ]; then
+    echo "Required package 'dotnet' not found."
+    exit 1
+fi
+if [ -z "$WFUZZ_TOOL_WFUZZ_UTILS_PATH" ]; then
+    echo "Required package 'wfuzz-utils' not found."
+    exit 1
+fi
+
+SCRIPT_DIR=$( cd -- "$( dirname -- "${BASH_SOURCE[0]}" )" &> /dev/null && pwd )
+
+if [ "$1" = "--help" ] || [ "$1" = "-h" ]; then
+    echo "Usage: wfuzz build [COMMAND] [OPTIONS]"
+    echo "Commands:"
+    echo "  build           Run build helper defined in wfuzz.json"
+    echo "  analyze         Analyze assemblies and generate test code"
+    echo "  helper HELPER   Run build helper with given name"
+    echo "  --help, -h      Show this help message"
+    exit 0
+fi
+
+if [ -z "$1" ] || [ "${1:0:1}" = "-" ]; then
+    cmd="build"
+else
+    cmd=$1
+    shift
+fi
+
+case "$cmd" in
+    build)
+        exec $SCRIPT_DIR/wfuzz-build-code-csharp-build $@
+        ;;
+    analyze)
+        exec $SCRIPT_DIR/wfuzz-build-code-csharp-analyze $@
+        ;;
+    helper)
+        exec $SCRIPT_DIR/wfuzz-build-code-csharp-helper $@
+        ;;
+    *)
+        echo "Unknown command: $cmd"
+        exit 1
+        ;;
+esac
