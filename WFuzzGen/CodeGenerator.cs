@@ -330,8 +330,8 @@ namespace WFuzzGen
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include=""..\WFuzz\WFuzz.csproj"" />
-    <ProjectReference Include=""..\TestLibrary\TestLibrary.csproj"" />
+    <ProjectReference Include=""..\..\WFuzz\WFuzz.csproj"" />
+    <ProjectReference Include=""..\..\TestLibrary\TestLibrary.csproj"" />
   </ItemGroup>
 </Project>";
 

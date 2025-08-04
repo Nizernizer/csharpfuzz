@@ -1,4 +1,0 @@
-D:\workspace\csharpfuzz\obj\Debug\net9.0\csharpfuzz.GeneratedMSBuildEditorConfig.editorconfig
-D:\workspace\csharpfuzz\obj\Debug\net9.0\csharpfuzz.AssemblyInfoInputs.cache
-D:\workspace\csharpfuzz\obj\Debug\net9.0\csharpfuzz.AssemblyInfo.cs
-D:\workspace\csharpfuzz\obj\Debug\net9.0\csharpfuzz.csproj.CoreCompileInputs.cache
